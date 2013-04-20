@@ -35,11 +35,15 @@ print "User (default: root): "
 user = gets.strip;
 user = 'root' if user.empty?
 
+print "Identity file (default: none): "
+idfile = gets.strip
+
 File.open(config_path, 'a') do |file|
   file.puts "host #{shortname}"
   file.puts " hostname #{hostname}"
   file.puts " port #{port}"
   file.puts " user #{user}"
+  file.puts " identityfile #{idfile}" if not idfile.empty?
   file.puts ""
 end
 
