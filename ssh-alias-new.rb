@@ -47,6 +47,9 @@ File.open(config_path, 'a') do |file|
   file.puts ""
 end
 
-system "KEY=$(cat #{key_path}); ssh #{shortname} -p #{port} \"mkdir -p ~/.ssh; echo $KEY >> ~/.ssh/authorized_keys;\""
+if idfile.empty?
+    system "KEY=$(cat #{key_path}); ssh #{shortname} -p #{port} \"mkdir -p ~/.ssh; echo $KEY >> ~/.ssh/authorized_keys;\""
+end
 
 puts "All done! Just type `ssh #{shortname}` to connect to the server from now on."
+
